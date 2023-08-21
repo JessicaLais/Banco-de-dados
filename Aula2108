@@ -1,0 +1,86 @@
+//Criando as tabelas//
+
+CREATE TABLE CLIENTE(
+CODIGO INT AUTO_INCREMENT PRIMARY KEY,
+NOME CHAR (80) NOT NULL,
+EMAIL CHAR (80) NOT NULL
+);
+
+CREATE TABLE PRODUTO(
+CODIGO INT PRIMARY KEY AUTO_INCREMENT,
+DESCRIÇÃO CHARACTER(80) NOT NULL,
+QTD INT NOT NULL,
+VALOR DECIMAL(0.00) NOT NULL
+);
+
+CREATE TABLE PEDIDO(
+COD INT PRIMARY KEY AUTO_INCREMENT,
+CODPRODUTO INT,
+CODCLIENTE INT, 
+NUMPEDIDO INT,
+TIPO CHARACTER(80)
+);
+
+//Inserindo os dados na tabela//
+
+INSERT INTO produto(CODIGO,DESCRIÇÃO,QTD,VALOR)
+	     VALUES(NULL, 'Memoria Din', 10, 35),
+		   (NULL, 'Teclado', 10, 300.85),
+             	   (NULL, 'Monitor', 7, 300.85),
+                   (NULL, 'Mouse', 20,10.00),
+                   (NULL, 'Fone', 4, 500.25);
+
+INSERT INTO cliente(CODIGO, NOME, EMAIL)
+	     VALUES(NULL, 'Lucas Eduardo','lucasedu@gmail.com'),
+             (NULL, 'Pebinha Oliveira','pebinhaoli@gmail.com'),
+             (NULL, 'Neymar Junior','fuimlk@gmail.com'),
+             (NULL, 'Edison Pele', 'reipele@gmail.com'),
+             (NULL, 'Talys Juninho', 'talysjuninho@gmail.com'),
+             (NULL, 'Efraim soluções', 'efraimsolution@gmail.com');
+
+INSERT INTO pedido(COD,CODPRODUTO,CODCLIENTE,NUMPEDIDO,TIPO)
+            VALUES(NULL,2,3,1,'A'),
+            	  (NULL,4,3,1,'A'),
+            	  (NULL,3,3,1,'A'),
+            	  (NULL,1,3,1,'A');
+
+SELECT COD,CODCLIENTE,NUMPEDIDO FROM pedido
+
+SELECT pedido.COD, pedido.CODCLIENTE, pedido.NUMPEDIDO,
+cliente.CODIGO, cliente.NOME 
+FROM pedido, cliente;
+
+//SO FUNCIONA SE ESCREVER NO BANCO GERAL//
+
+//SELECIONA TODOS OS DADOS E SELECIONA O PEDIDO E CODIGO IGUAIS//
+SELECT pedido.COD, pedido.CODCLIENTE, pedido.NUMPEDIDO,
+cliente.CODIGO, cliente.NOME 
+FROM pedido, cliente WHERE
+pedido.CODCLIENTE = cliente.CODIGO;
+
+//AUMENTOU A TABELA SÓ//
+
+INSERT INTO pedido(COD,CODPRODUTO,CODCLIENTE,NUMPEDIDO,TIPO)
+values(NULL,3,3,2,'A'),
+(NULL,1,3,2,'A');
+dps insert dnv
+
+// SELECIONA O MESMO NUMERO DO PEDIDO, CODIGO DO PEDIDO E NUMERO DO CLIENTE IGUAIS  //
+
+SELECT pedido.COD,pedido.CODCLIENTE,pedido.NUMPEDIDO,
+	cliente.codigo, cliente.NOME,
+	produto.CODIGO, produto.DESCRIÇÃO,produto.VALOR
+FROM pedido,cliente,produto WHERE
+pedido.CODCLIENTE = cliente.CODIGO AND 
+pedido.CODPRODUTO = produto.CODIGO AND
+pedido.NUMPEDIDO = 2;
+
+//ABREVIAÇÃO DA TABELA//
+
+SELECT p.COD,p.CODCLIENTE,p.NUMPEDIDO,
+	c.codigo, c.NOME,
+	pd.CODIGO, pd.DESCRIÇÃO,pd.VALOR
+FROM pedido p ,cliente c ,produto pd WHERE
+p.CODCLIENTE = c.CODIGO AND 
+p.CODPRODUTO = pd.CODIGO AND
+p.NUMPEDIDO = 2;
