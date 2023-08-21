@@ -84,3 +84,11 @@ FROM pedido p ,cliente c ,produto pd WHERE
 p.CODCLIENTE = c.CODIGO AND 
 p.CODPRODUTO = pd.CODIGO AND
 p.NUMPEDIDO = 2;
+
+SELECT p.COD,p.CODCLIENTE,p.NUMPEDIDO,
+	c.codigo, c.NOME,
+	pd.CODIGO, pd.DESCRIÇÃO,sum (pd.VALOR) //soma os valores, so foca nele//
+FROM pedido p ,cliente c ,produto pd WHERE
+p.CODCLIENTE = c.CODIGO AND 
+p.CODPRODUTO = pd.CODIGO AND
+p.NUMPEDIDO = 2;
