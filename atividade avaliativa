@@ -78,7 +78,25 @@ VALUES(NULL,1,5,'2022-04-07','2021-04-08','2022-04-08',00),
       (NULL,2,9,'2014-11-07','2014-11-08','2014-05-09',40),
       (NULL,10,4,'2016-12-07','2016-12-08','2017-01-18',70);
 
+1-
 SELECT * FROM livros//SELECIONAR EM ORDEM ALFABETICA//
 ORDER BY TITULO, AUTOR, DATALAN;
 
-SELECT DATALAN FROM livros WHERE DATALAN = 2011 OR DATALAN = 2012;//teste n ta pronto//
+2-
+SELECT DATALAN FROM livros WHERE DATALAN = 2011 OR DATALAN = 2012;
+
+3-
+SELECT TITULO FROM livros WHERE TITULO LIKE '%REDES%';
+
+4-
+SELECT livros.TITULO, livros.COPIAS, 
+       assunto.NOME 
+       FROM livros, assunto;
+
+5-
+SELECT livros.TITULO, livros.AUTOR, 
+       assunto.NOME 
+       FROM livros, assunto
+       WHERE assunto.NOME LIKE '%REDES%';
+6-	
+SELECT assunto.NOME(COUNT livros.ID FROM livros WHERE livros.ID) AS NUMEROS LIVROS FROM assuntos;
