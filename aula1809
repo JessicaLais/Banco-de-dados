@@ -86,3 +86,23 @@ WHERE
 cliente.ID =veiculo.CLIENTE_ID AND
 cliente.ID = servico.CLIENTE_ID 
 ORDER BY (veiculo.PLACA) ASC**/
+
+todos os clientes que possuem carro na cor Branca e que tenham feito pelo menos 1 servico
+SELECT cliente.ID, cliente.NOME,
+veiculo.ID, veiculo.COR, veiculo.CLIENTE_ID,veiculo.PLACA,
+servico.ID,servico.DATA_SERVICO,servico.CLIENTE_ID,
+tipo_servico.VALOR
+FROM servico, veiculo, cliente, tipo_servico
+WHERE
+cliente.ID =veiculo.CLIENTE_ID AND
+cliente.ID = servico.CLIENTE_ID AND
+veiculo.COR = 'BRANCO' 
+
+
+Todos os clientes que possuem carro do modelo Gol da Wolksvagen
+SELECT cliente.ID, cliente.NOME,
+veiculo.ID,veiculo.CLIENTE_ID,veiculo.PLACA,veiculo.MODELO,veiculo.MARCA
+FROM  veiculo, cliente
+WHERE
+cliente.ID =veiculo.CLIENTE_ID AND
+veiculo.MODELO = 'FLUENCE' 
