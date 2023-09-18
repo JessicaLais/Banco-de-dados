@@ -1,0 +1,88 @@
+CREATE TABLE VEICULO(
+ID INT PRIMARY KEY AUTO_INCREMENT,
+    PLACA CHAR(8) NOT NULL,
+    COR CHAR(15) NOT NULL,
+    MODELO CHAR(15) NOT NULL,
+    MARCA CHAR(15) NOT NULL,
+    CLIENTE_ID INT NOT NULL
+);
+
+CREATE TABLE SERVICO(
+ID INT PRIMARY KEY AUTO_INCREMENT,
+    DATA_SERVICO CHAR(15) NOT NULL,
+    FORMA_PAG CHAR(15)NOT NULL,
+    CLIENTE_ID INT NOT NULL
+);
+
+CREATE TABLE TIPO_SERVICO(
+ID INT PRIMARY KEY AUTO_INCREMENT,
+    DATA_SERVICO CHAR(15) NOT NULL,
+    NOME CHAR(15)NOT NULL,
+    VALOR DECIMAL(10,2) NOT NULL
+);
+
+CREATE TABLE CLIENTE(
+ID INT AUTO_INCREMENT PRIMARY KEY,
+    NOME CHAR(45) NOT NULL,
+    CPF CHAR(16) NOT NULL
+);
+
+INSERT INTO cliente(ID,NOME,CPF)
+VALUES(NULL, 'Jessica da Silva','80739105190'),
+(NULL, 'Thiago da Silva','12121212121'),
+(NULL, 'Maria da Silva','65656565656'),
+(NULL, 'Joao da Silva','74747474747'),
+(NULL, 'Giovanna da Silva','33333333333');
+
+INSERT INTO veiculo(ID,PLACA,COR,MODELO,MARCA,CLIENTE_ID)
+VALUES(NULL,'jdr2121','AZUL','ONIX','CHEVROLET',2),
+(NULL,'ovo3530','CINZA','TRACK','CHEVROLET',3),
+(NULL,'xix2023','AZUL','FLUENCE','RENAULT',4),
+(NULL,'pop5652','PRETO','SANDERO','RENAULT',1),
+(NULL,'jdv7052','BRANCO','AUDI I8','AUDI',5);
+
+INSERT INTO tipo_servico(ID, DATA_SERVICO, NOME, VALOR)
+VALUES(NULL,'17-09-2023','COMPLETA','100'),
+(NULL,'17-09-2023','COMPLETA E MOTOR','160');
+
+INSERT INTO `servico` (`ID`, `DATA_SERVICO`, `FORMA_PAG`, `CLIENTE_ID`) 
+VALUES (NULL, '23-09-2023', 'CARTAO', '2'),
+(NULL, '10-09-2023', 'A VISTA', '3'),
+(NULL, '11-09-2023', 'CARTAO', '1'),
+(NULL, '03-09-2023', 'A VISTA', '4'),
+(NULL, '25-09-2023', 'CARTAO', '5'),
+(NULL, '20-09-2023', 'CARTAO', '5'),
+(NULL, '04-09-2023', 'A VISTA', '4'),
+(NULL, '09-09-2023', 'A VISTA', '3'),
+(NULL, '01-09-2023', 'CARTAO', '2');
+
+SELECT cliente.ID, cliente.NOME,
+veiculo.ID, veiculo.MODELO, veiculo.CLIENTE_ID,veiculo.PLACA,
+servico.ID,servico.DATA_SERVICO,servico.CLIENTE_ID
+FROM servico, veiculo, cliente
+WHERE
+cliente.ID =veiculo.CLIENTE_ID AND
+cliente.ID = servico.CLIENTE_ID AND
+cliente.ID = 5;
+
+**//SELECT cliente.ID, cliente.NOME,
+veiculo.ID, veiculo.MODELO, veiculo.CLIENTE_ID,veiculo.PLACA,
+servico.ID,servico.DATA_SERVICO,servico.CLIENTE_ID,
+tipo_servico.VALOR
+FROM servico, veiculo, cliente, tipo_servico
+WHERE
+cliente.ID =veiculo.CLIENTE_ID AND
+cliente.ID = servico.CLIENTE_ID AND
+cliente.ID = 5;**//
+
+**/Todo os veiculos que efetuaram pelo menos 1 servico, ordenados por placa de forma
+crescente
+SELECT cliente.ID, cliente.NOME,
+veiculo.ID, veiculo.MODELO, veiculo.CLIENTE_ID,veiculo.PLACA,
+servico.ID,servico.DATA_SERVICO,servico.CLIENTE_ID,
+tipo_servico.VALOR
+FROM servico, veiculo, cliente, tipo_servico
+WHERE
+cliente.ID =veiculo.CLIENTE_ID AND
+cliente.ID = servico.CLIENTE_ID 
+ORDER BY (veiculo.PLACA) ASC**/
